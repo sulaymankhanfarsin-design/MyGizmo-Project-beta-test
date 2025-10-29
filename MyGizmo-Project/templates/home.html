@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}My Gizmo - Your All-In-One Web Toolkit{% endblock %}
+
+{% block content %}
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                <span class="text-[#03A6A1]">Your All-In-One </span><span class="text-[#f26c24]">Web Toolkit</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                A collection of free, simple, and powerful online tools to make your digital life easier. No ads, no tracking, just tools that work.
+            </p>
+        </section>
+
+        <!-- Tools Grid -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center md:text-left">Our Tools:</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Tool Card: QR Code Generator -->
+                <a href="{{ url_for('qr_generator') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] hover:text-white">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <!-- Heroicon: qrcode -->
+                            <img src="{{ url_for('static', filename='QRcode-logo.png') }}" alt="QRcode-logo" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">QR Code Generator</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Quickly generate custom QR codes for URLs, text, Wi-Fi, and more.
+                    </p>
+                </a>
+
+                <!-- Tool Card: Picture to PDF Converter -->
+                <a href="" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB]">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <!-- Heroicon: PDF Converter -->
+                            <img src="{{ url_for('static', filename='image_to_pdf.png') }}" alt="UtilityBox Logo" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Image to PDF</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Combine multiple JPG, PNG, or other images into a single, easy-to-share PDF document.
+                    </p>
+                </a>
+                
+                <!-- Tool Card: Web Calculator -->
+                <a href="#" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB]">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <!-- Heroicon: Web Calculator -->
+                            <img src="{{ url_for('static', filename='text_to_handwriting.png') }}" alt="UtilityBox Logo" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Text to Handwriting</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        The user enters or pastes text. The tool converts it into an image using a handwriting-style font. The image can be downloaded as PNG or PDF.
+                    </p>
+                </a>
+                
+                <!-- Tool Card: Text Case Converter -->
+                <a href="" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB]">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <!-- Heroicon: PDF Converter -->
+                            <img src="{{ url_for('static', filename='unit_converter.png') }}" alt="UtilityBox Logo" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Unit Converter</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Length → meter, kilometer, mile, inch, etc.
+
+Weight → gram, kilogram, pound, ounce, etc. BMI. Temperature → Celsius, Fahrenheit, Kelvin. Area / Volume / Speed / Time / Digital Storage, etc.
+                    </p>
+                </a>
+                <a href="{{ url_for('calculator') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB]">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <img src="{{ url_for('static', filename='calculator.png') }}" alt="Calculator Icon" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Web Calculator</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        A simple and easy-to-use calculator for basic arithmetic operations.
+                    </p>
+                </a>
+                <!-- Tool Card: Unit Converter -->
+                <a href="" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB]">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <!-- Heroicon: PDF Converter -->
+                            <img src="{{ url_for('static', filename='list_randomizer.png') }}" alt="UtilityBox Logo" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">List Randomizer</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        User enters multiple items (one per line). Clicks a button like “Randomize List”. The tool instantly shows the shuffled list in a random order
+                    </p>
+                </a>
+                
+                <!-- Tool Card: Password Generator -->
+                <a href="{{ url_for('slug_generator') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB]">
+                    <div class="flex items-center mb-4">
+                        <div class="p-3 text-indigo-600 mr-2">
+                            <!-- Heroicon: PDF Converter -->
+                            <img src="{{ url_for('static', filename='link.png') }}" alt="UtilityBox Logo" class="h-14 w-18 inline-block mr-1">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">URL Slag Generator</h3>
+                    </div>
+                    <p class="text-gray-600">
+                    Converts it to lowercase, Removes special characters & punctuation. Replaces spaces with hyphens. Removes extra dashes
+                    </p>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+{% endblock %}
