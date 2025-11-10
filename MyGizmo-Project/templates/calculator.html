@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Calculator - My Gizmo{% endblock %}
+
+{% block content %}
+<div class="max-w-xs mx-auto bg-gray-900 text-white p-6 rounded-2xl shadow-2xl">
+    
+    <input type="text" id="display" class="w-full h-20 text-5xl text-right bg-gray-900 border-none rounded-lg p-4 mb-6 focus:outline-none" disabled>
+
+    <div class="grid grid-cols-4 gap-4">
+        
+        <button onclick="clearDisplay()" class="text-3xl bg-gray-700 p-4 rounded-full hover:bg-gray-600 transition-all">C</button>
+        <button onclick="append('/')" class="text-3xl bg-orange-500 p-4 rounded-full hover:bg-orange-400 transition-all">÷</button>
+        <button onclick="append('*')" class="text-3xl bg-orange-500 p-4 rounded-full hover:bg-orange-400 transition-all">×</button>
+        <button onclick="append('-')" class="text-3xl bg-orange-500 p-4 rounded-full hover:bg-orange-400 transition-all">-</button>
+
+        <button onclick="append('7')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">7</button>
+        <button onclick="append('8')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">8</button>
+        <button onclick="append('9')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">9</button>
+        <button onclick="append('+')" class="text-3xl bg-orange-500 p-4 rounded-full hover:bg-orange-400 transition-all">+</button>
+
+        <button onclick="append('4')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">4</button>
+        <button onclick="append('5')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">5</button>
+        <button onclick="append('6')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">6</button>
+        <button onclick="append('.')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">.</button>
+
+        <button onclick="append('1')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">1</button>
+        <button onclick="append('2')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">2</button>
+        <button onclick="append('3')" class="text-3xl bg-gray-500 p-4 rounded-full hover:bg-gray-400 transition-all">3</button>
+        
+        <button onclick="append('0')" class="text-3xl bg-orange-500 p-4 rounded-full hover:bg-orange-400 transition-all">0</button>
+        
+        <button onclick="calculate()" class="col-span-4 text-3xl bg-teal-500 p-4 rounded-full hover:bg-teal-700 transition-all">=</button>
+    </div>
+</div>
+
+<script>
+    function append(value) {
+      document.getElementById("display").value += value;
+    }
+    function clearDisplay() {
+      document.getElementById("display").value = "";
+    }
+    function calculate() {
+      try {
+        // Using eval() is simple but be aware of security risks if input isn't controlled
+        document.getElementById("display").value = eval(document.getElementById("display").value);
+      } catch {
+        document.getElementById("display").value = "Error";
+      }
+    }
+</script>
+{% endblock %}
