@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}QR Code Generator - My Gizmo{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto bg-[#A6CDC6] text-[4A9782] p-16 rounded-2xl shadow-4xl border border-gray-400">
+    
+    <h1 class="text-4xl font-bold text-center text-gray-600 mb-2">QR Code Generator</h1>
+    <p class="text-lg text-gray-500 text-center mb-8">Enter any URL or text to create your QR code.</p>
+
+    <form action="{{ url_for('qr_generator') }}" method="POST" class="flex flex-col gap-6">
+        
+        <input 
+            type="text" 
+            name="url" 
+            placeholder="Enter your URL here..." 
+            required
+            class="w-full p-4 bg-teal-700 text-white rounded-lg border-2 border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
+        >
+        
+        <button 
+            type="submit"
+            class="w-full p-4 font-semibold text-white bg-gradient-to-r from-orange-500 to-blue-600 rounded-lg hover:from-orange-600 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-500 transform hover:-translate-y-1 transition-all shadow-lg"
+        >
+            Generate
+        </button>
+    </form>
+
+    {% if qr_image_path %}
+    <div class="mt-8 pt-8 border-t border-gray-700">
+        <h2 class="text-2xl font-semibold text-center text-white">Your QR Code:</h2>
+        
+        <img 
+            src="{{ url_for('static', filename=qr_image_path) }}?t={{ range(1, 10000) | random }}" 
+            alt="Generated QR Code"
+            class="mx-auto mt-6 border-8 border-white rounded-xl shadow-lg"
+        >
+        
+        <a 
+            href="{{ url_for('static', filename=qr_image_path) }}" 
+            download="my_qr_code.png" 
+            class="block w-1/2 mx-auto mt-6 p-3 text-center font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transform hover:-translate-y-0.5 transition-all shadow-lg"
+        >
+            Download
+        </a>
+        
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
