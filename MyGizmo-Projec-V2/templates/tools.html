@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Tools - My Gizmo{% endblock %}
+
+{% block content %}
+<main class="container mx-auto px-6 py-12">
+    <section class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span class="text-teal-500">MyGizmo</span><span class="text-[#2a4a87]"> Toolkit</span>
+        </h1>
+        
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            {% if current_user.is_authenticated %}
+                Welcome, {{ current_user.username }}! Here are your available tools.
+            {% else %}
+                Welcome! Here are all available tools.
+            {% endif %}
+        </p>
+        </section>
+
+    <section>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <a href="{{ url_for('ai_background_remover') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <svg class="h-14 w-18 inline-block mr-2 text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c.251-.04.507-.068.77-.087a21.048 21.048 0 0110.732 4.63c.31.299.5.742.5 1.218v4.318a2.25 2.25 0 01-1.659 2.193l-2.156.622a2.25 2.25 0 00-1.09 1.09l-.622 2.156a2.25 2.25 0 01-2.193 1.659H6.379a2.25 2.25 0 01-2.193-1.659l-.622-2.156a2.25 2.25 0 00-1.09-1.09l-2.156-.622a2.25 2.25 0 01-1.659-2.193V9.051c0-.476.19-.919.5-1.218a21.048 21.048 0 0110.732-4.63c.263-.019.519-.047.77-.087z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold text-gray-900">AI Background Remover</h3>
+                </div>
+                <p class="text-gray-600">
+                    Instantly remove the background from any image using AI.
+                </p>
+            </a>
+            <a href="{{ url_for('image_studio') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <img src="{{ url_for('static', filename='calculator.png') }}" alt="Image Studio Icon" class="h-14 w-18 inline-block mr-2">
+                    <h3 class="text-xl font-semibold text-gray-900">Image Studio</h3>
+                </div>
+                <p class="text-gray-600">
+                    Batch Image Studio: Resize • Watermark • Beautify • Export
+                </p>
+            </a>
+            
+            <a href="{{ url_for('file_converter') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <img src="{{ url_for('static', filename='image_to_pdf.png') }}" alt="File Converter Logo" class="h-14 w-18 inline-block mr-2">
+                    <h3 class="text-xl font-semibold text-gray-900">File Converter</h3>
+                </div>
+                <p class="text-gray-600">
+                    Combine JPG, PNG, or other images into a single PDF document.
+                </p>
+            </a>
+            
+            <a href="{{ url_for('qr_generator') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <img src="{{ url_for('static', filename='QRcode-logo.png') }}" alt="QRcode-logo" class="h-14 w-18 inline-block mr-2">
+                    <h3 class="text-xl font-semibold text-gray-900">QR Code Generator</h3>
+                </div>
+                <p class="text-gray-600">
+                    Quickly generate custom QR codes for URLs, text, Wi-Fi, and more.
+                </p>
+            </a>
+            
+            <a href="{{ url_for('slug_generator') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <img src="{{ url_for('static', filename='link.png') }}" alt="URL Slug Logo" class="h-14 w-18 inline-block mr-2">
+                    <h3 class="text-xl font-semibold text-gray-900">URL Slug Generator</h3>
+                </div>
+                <p class="text-gray-600">
+                Converts text to lowercase, removes special characters, and replaces spaces with hyphens.
+                </p>
+            </a>
+
+            <a href="{{ url_for('list_randomizer') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <img src="{{ url_for('static', filename='list_randomizer.png') }}" alt="List Randomizer Logo" class="h-14 w-18 inline-block mr-2">
+                    <h3 class="text-xl font-semibold text-gray-900">List Randomizer</h3>
+                </div>
+                <p class="text-gray-600">
+                    Instantly shuffle a list of names, numbers, or any other items in a random order.
+                </p>
+            </a>
+
+            <a href="{{ url_for('calculator') }}" class="tool-card bg-white p-6 rounded-lg shadow-md block hover:bg-[#FFE3BB] border border-gray-100">
+                <div class="flex items-center mb-4">
+                    <img src="{{ url_for('static', filename='calculator.png') }}" alt="Calculator Icon" class="h-14 w-18 inline-block mr-2">
+                    <h3 class="text-xl font-semibold text-gray-900">Calculator</h3>
+                </div>
+                <p class="text-gray-600">
+                    A simple and easy-to-use calculator for basic arithmetic operations.
+                </p>
+            </a>
+
+        </div>
+    </section>
+</main>
+{% endblock %}

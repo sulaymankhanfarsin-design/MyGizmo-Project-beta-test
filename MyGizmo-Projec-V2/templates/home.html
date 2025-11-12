@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}My Gizmo - Premium Web Tools for Modern Businesses{% endblock %}
+
+{% block head %}
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
+
+{% block content %}
+<div class="space-y-24">
+    <section class="text-center py-20 bg-white rounded-lg shadow-sm">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                <span class="text-teal-500">Boost Your Productivity</span> with
+                <span class="text-[#2a4a87]">MyGizmo</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                Stop juggling dozens of single-task websites. Get all your essential file, image, and text tools in one premium, ad-free workspace.
+            </p>
+            <a href="{{ url_for('register') }}" class="bg-teal-500 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-teal-600 transition duration-300">
+                Get Started for Free
+            </a>
+            <p class="text-gray-500 text-sm mt-4">No credit card required.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-800">A Full Toolkit at Your Fingertips</h2>
+            <p class="text-lg text-gray-500 mt-2">All the tools you'll ever need. All in one place.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <a href="{{ url_for('image_studio') }}" class="block bg-white p-6 rounded-lg shadow-lg border border-gray-100 hover:shadow-xl hover:scale-[1.02] transition-all">
+                <h3 class="text-2xl font-semibold text-[#2a4a87] mb-3">Batch Image Studio</h3>
+                <p class="text-gray-600">Resize, watermark, and convert dozens of images at once. Your new social media partner.</p>
+            </a>
+            
+            <a href="{{ url_for('file_converter') }}" class="block bg-white p-6 rounded-lg shadow-lg border border-gray-100 hover:shadow-xl hover:scale-[1.02] transition-all">
+                <h3 class="text-2xl font-semibold text-[#2a4a87] mb-3">All-in-One File Converter</h3>
+                <p class="text-gray-600">Instantly convert JPGs to PDF or extract images from a PDF. Fast, simple, and secure.</p>
+            </a>
+            
+            <a href="{{ url_for('slug_generator') }}" class="block bg-white p-6 rounded-lg shadow-lg border border-gray-100 hover:shadow-xl hover:scale-[1.02] transition-all">
+                <h3 class="text-2xl font-semibold text-[#2a4a87] mb-3">Text & List Tools</h3>
+                <p class="text-gray-600">Generate URL slugs or randomize lists in seconds. Perfect for developers and marketers.</p>
+            </a>
+        </div>
+        
+        <div class="text-center mt-8">
+            <a href="{{ url_for('tools') }}" class="text-teal-600 font-medium hover:underline">
+                See all available tools &rarr;
+            </a>
+        </div>
+        </section>
+
+    <section id="pricing" class="bg-white rounded-lg shadow-sm py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-12">Choose Your Plan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                
+                <div class="border border-gray-200 p-8 rounded-lg">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Free</h3>
+                    <p class="text-5xl font-bold text-gray-900 mb-4">$0<span class="text-lg font-normal text-gray-500">/mo</span></p>
+                    <ul class="space-y-2 text-gray-600 mb-6 text-left">
+                        <li>✓ Access to 3 basic tools</li>
+                        <li>✓ 5 conversions per day</li>
+                        <li>✓ Community support</li>
+                    </ul>
+                    <a href="{{ url_for('register') }}" class="bg-gray-200 text-gray-800 w-full block py-2 rounded-md font-medium hover:bg-gray-300">
+                        Get Started
+                    </a>
+                </div>
+
+                <div class="border-2 border-teal-500 p-8 rounded-lg shadow-xl relative">
+                    <span class="bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase absolute -top-4 left-1/2 -translate-x-1/2">Most Popular</span>
+                    <h3 class="text-2xl font-semibold text-teal-600 mb-4">Pro</h3>
+                    <p class="text-5xl font-bold text-gray-900 mb-4">$9<span class="text-lg font-normal text-gray-500">/mo</span></p>
+                    <ul class="space-y-2 text-gray-600 mb-6 text-left">
+                        <li>✓ Access to ALL tools</li>
+                        <li>✓ Unlimited conversions</li>
+                        <li>✓ Priority email support</li>
+                    </ul>
+                    <button id="checkout-button" 
+                            data-authenticated="{{ current_user.is_authenticated | tojson }}"
+                            class="bg-teal-500 text-white w-full block py-2 rounded-md font-medium hover:bg-teal-600">
+                        Start 7-day Trial
+                    </button>
+                </div>
+
+                <div class="border border-gray-200 p-8 rounded-lg">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Enterprise</h3>
+                    <p class="text-5xl font-bold text-gray-900 mb-4">$49<span class="text-lg font-normal text-gray-500">/mo</span></p>
+                    <ul class="space-y-2 text-gray-600 mb-6 text-left">
+                        <li>✓ All Pro features</li>
+                        <li>✓ Team accounts</li>
+                        <li>✓ Dedicated support</li>
+                    </ul>
+                    <a href="{{ url_for('contact') }}" class="bg-gray-200 text-gray-800 w-full block py-2 rounded-md font-medium hover:bg-gray-300">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const stripe = Stripe("{{ stripe_key | safe }}"); 
+        const checkoutButton = document.getElementById("checkout-button");
+        
+        if (checkoutButton) {
+            const isUserAuthenticated = JSON.parse(checkoutButton.dataset.authenticated);
+            checkoutButton.addEventListener("click", async () => {
+                checkoutButton.disabled = true;
+                checkoutButton.textContent = "Processing...";
+                if (!isUserAuthenticated) {
+                    window.location.href = "{{ url_for('register') }}";
+                    return;
+                }
+                try {
+                    const response = await fetch("{{ url_for('create_checkout_session') }}", {
+                        method: "POST",
+                        headers: {'Content-Type': 'application/json'}
+                    });
+                    const session = await response.json();
+                    if (session.id) {
+                        const result = await stripe.redirectToCheckout({ sessionId: session.id });
+                        if (result.error) {
+                            alert(result.error.message);
+                            checkoutButton.disabled = false;
+                            checkoutButton.textContent = "Start 7-day Trial";
+                        }
+                    } else if (session.error) {
+                        alert(session.error);
+                        checkoutButton.disabled = false;
+                        checkoutButton.textContent = "Start 7-day Trial";
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Could not connect to payment processor. Please try again later.");
+                    checkoutButton.disabled = false;
+                    checkoutButton.textContent = "Start 7-day Trial";
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}
